@@ -1,0 +1,49 @@
+<?php
+
+namespace Kroscom\OneRosterAPI\Endpoints;
+
+use Battis\OpenAPI\Client\BaseEndpoint;
+use Battis\OpenAPI\Client\Exceptions\ArgumentException;
+use Kroscom\OneRosterAPI\Components\AcademicSessionOutputModel;
+use Kroscom\OneRosterAPI\Components\AcademicSessionsOutputModel;
+
+/**
+ * @api
+ */
+class GradingPeriods extends BaseEndpoint
+{
+    /**
+     * @var string $url
+     */
+    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/gradingPeriods/{id}";
+
+    /**
+     * Returns a collection of grading periods.
+     *
+     * @return \Kroscom\OneRosterAPI\Components\AcademicSessionsOutputModel
+     *   OK - It was possible to read the collection.
+     */
+    public function get(): AcademicSessionsOutputModel
+    {
+        return new AcademicSessionsOutputModel($this->send("get", [], []));
+    }
+
+    /**
+     * Returns a specific grading period.
+     *
+     * @param array{id: string} $params An associative array
+     *     - id: sourcedId for the grading period
+     *
+     * @return \Kroscom\OneRosterAPI\Components\AcademicSessionOutputModel
+     *   OK - It was possible to read the collection.
+     *
+     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
+     *   parameters are not defined
+     */
+    public function getById(array $params): AcademicSessionOutputModel
+    {
+        assert(isset($params['id']), new ArgumentException("Parameter `id` is required"));
+
+        return new AcademicSessionOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['id']), ARRAY_FILTER_USE_KEY), []));
+    }
+}

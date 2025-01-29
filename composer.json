@@ -1,0 +1,24 @@
+{
+  "name": "pavlokrostylovblps/oneroster-php-api",
+  "description": "OneRoster REST API PHP client",
+  "license": "GPL-3.0",
+  "autoload": {
+    "psr-4": {
+      "Kroscom\\OneRosterAPI\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Pavlo Krostylov",
+      "email": "pavlo.krostylov@gmail.com"
+    },
+    {
+      "name": "Seth Battis",
+      "email": "sbattis@groton.org"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "battis/openapi-client.base": "^0.1"
+  }
+}
