@@ -2,7 +2,7 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $username
@@ -27,7 +27,7 @@ use Battis\OpenAPI\Client\BaseComponent;
  *
  * @api
  */
-class ORUserModel extends BaseComponent
+class UserModel extends BaseComponent
 {
     /**
      * @var string[] $fields

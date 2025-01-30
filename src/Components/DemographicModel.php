@@ -2,7 +2,7 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $birthDate
@@ -25,7 +25,7 @@ use Battis\OpenAPI\Client\BaseComponent;
  *
  * @api
  */
-class ORDemographicModel extends BaseComponent
+class DemographicModel extends BaseComponent
 {
     /**
      * @var string[] $fields

@@ -1,38 +1,36 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Terms;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
 use Kroscom\OneRosterAPI\Components\AcademicSessionsOutputModel;
 
 /**
  * @api
  */
-class GradingPeriods extends BaseEndpoint
+class GradingPeriods extends SubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/terms/{term_id}/gradingPeriods";
+    protected string $endpoint = "terms/{parent_id}/gradingPeriods";
 
     /**
-     * Returns a collection of grading periods for the specified
-     * ```term\_id```
-     *
-     * @param array{term_id: string} $params An associative array
-     *     - term_id: sourcedId for the term
-     *
-     * @return \Kroscom\OneRosterAPI\Components\AcademicSessionsOutputModel
-     *   OK - It was possible to read the collection.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getByTermId(array $params): AcademicSessionsOutputModel
-    {
-        assert(isset($params['term_id']), new ArgumentException("Parameter `term_id` is required"));
+    protected string $modelName = "academicSession";
 
-        return new AcademicSessionsOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['term_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of grading periods for the specified $term_id
+     *
+     * @param string|int|float $term_id
+     * @param array $params
+     * @return AcademicSessionsOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getByTermId(string|int|float $term_id, array $params = []): AcademicSessionsOutputModel|BaseComponent
+    {
+        return $this->get($term_id, $params);
     }
 }

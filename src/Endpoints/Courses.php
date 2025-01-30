@@ -1,49 +1,20 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
-use Kroscom\OneRosterAPI\Components\CourseOutputModel;
-use Kroscom\OneRosterAPI\Components\CoursesOutputModel;
+use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api
  */
-class Courses extends BaseEndpoint
+class Courses extends Endpoint
 {
     /**
-     * @var string $url
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/courses/{id}";
+    protected string $endpoint = "courses";
 
     /**
-     * Returns a collection of courses.
-     *
-     * @return \Kroscom\OneRosterAPI\Components\CoursesOutputModel OK - It
-     *   was possible to read the collection.
+     * @var string
      */
-    public function get(): CoursesOutputModel
-    {
-        return new CoursesOutputModel($this->send("get", [], []));
-    }
-
-    /**
-     * Returns a specific course.
-     *
-     * @param array{id: string} $params An associative array
-     *     - id: sourcedId for the course
-     *
-     * @return \Kroscom\OneRosterAPI\Components\CourseOutputModel OK - It
-     *   was possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
-     */
-    public function getById(array $params): CourseOutputModel
-    {
-        assert(isset($params['id']), new ArgumentException("Parameter `id` is required"));
-
-        return new CourseOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['id']), ARRAY_FILTER_USE_KEY), []));
-    }
+    protected string $modelName = "course";
 }

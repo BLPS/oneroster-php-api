@@ -2,7 +2,7 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * Results model
@@ -22,7 +22,7 @@ use Battis\OpenAPI\Client\BaseComponent;
  *
  * @api
  */
-class ResultModelSvc extends BaseComponent
+class ResultModel extends BaseComponent
 {
     /**
      * @var string[] $fields

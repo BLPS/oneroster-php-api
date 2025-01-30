@@ -2,7 +2,7 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $title

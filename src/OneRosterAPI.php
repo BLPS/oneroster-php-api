@@ -2,7 +2,7 @@
 
 namespace Kroscom\OneRosterAPI;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
+use Kroscom\OneRosterAPI\Client\Endpoints\BaseEndpoint;
 use Kroscom\OneRosterAPI\Endpoints\AcademicSessions;
 use Kroscom\OneRosterAPI\Endpoints\Categories;
 use Kroscom\OneRosterAPI\Endpoints\Classes;
@@ -22,34 +22,33 @@ use Kroscom\OneRosterAPI\Endpoints\Users;
 /**
  * Routing class for OneRoster
  *
- * @property \Kroscom\OneRosterAPI\Endpoints\AcademicSessions
+ * @property AcademicSessions
  *   $academicSessions
- * @property \Kroscom\OneRosterAPI\Endpoints\Terms $terms Routing class for
+ * @property Terms $terms Routing class for
  *   the subnamespace `Terms`
- * @property \Kroscom\OneRosterAPI\Endpoints\GradingPeriods $gradingPeriods
- * @property \Kroscom\OneRosterAPI\Endpoints\Categories $categories
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes $classes Routing class
+ * @property GradingPeriods $gradingPeriods
+ * @property Categories $categories
+ * @property Classes $classes Routing class
  *   for the subnamespace `Classes`
- * @property \Kroscom\OneRosterAPI\Endpoints\Courses $courses
- * @property \Kroscom\OneRosterAPI\Endpoints\Enrollments $enrollments
- * @property \Kroscom\OneRosterAPI\Endpoints\LineItems $lineItems
- * @property \Kroscom\OneRosterAPI\Endpoints\Orgs $orgs
- * @property \Kroscom\OneRosterAPI\Endpoints\Results $results
- * @property \Kroscom\OneRosterAPI\Endpoints\Schools $schools Routing class
+ * @property Courses $courses
+ * @property Enrollments $enrollments
+ * @property LineItems $lineItems
+ * @property Orgs $orgs
+ * @property Results $results
+ * @property Schools $schools Routing class
  *   for the subnamespace `Schools`
- * @property \Kroscom\OneRosterAPI\Endpoints\Users $users
- * @property \Kroscom\OneRosterAPI\Endpoints\Teachers $teachers Routing
+ * @property Users $users
+ * @property Teachers $teachers Routing
  *   class for the subnamespace `Teachers`
- * @property \Kroscom\OneRosterAPI\Endpoints\Students $students
- * @property \Kroscom\OneRosterAPI\Endpoints\Demographics $demographics
+ * @property Students $students
+ * @property Demographics $demographics
  *
  * @api
  */
-class Client extends BaseEndpoint
+class OneRosterAPI extends BaseEndpoint
 {
     /**
-     * @var array<string, class-string<\Battis\OpenAPI\Client\BaseEndpoint>>
-     *   $endpoints Routing subpaths
+     * @var array|string[]
      */
     protected array $endpoints = [
         "academicSessions" => "\Kroscom\OneRosterAPI\Endpoints\AcademicSessions",
@@ -70,83 +69,83 @@ class Client extends BaseEndpoint
     ];
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\AcademicSessions
+     * @var ?AcademicSessions
      *   $_academicSessions
      */
     protected ?AcademicSessions $_academicSessions = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Terms $_terms Routing class
+     * @var ?Terms $_terms Routing class
      *   for the subnamespace `Terms`
      */
     protected ?Terms $_terms = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\GradingPeriods
+     * @var ?GradingPeriods
      *   $_gradingPeriods
      */
     protected ?GradingPeriods $_gradingPeriods = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Categories $_categories
+     * @var ?Categories $_categories
      */
     protected ?Categories $_categories = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes $_classes Routing
+     * @var ?Classes $_classes Routing
      *   class for the subnamespace `Classes`
      */
     protected ?Classes $_classes = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Courses $_courses
+     * @var ?Courses $_courses
      */
     protected ?Courses $_courses = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Enrollments $_enrollments
+     * @var ?Enrollments $_enrollments
      */
     protected ?Enrollments $_enrollments = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\LineItems $_lineItems
+     * @var ?LineItems $_lineItems
      */
     protected ?LineItems $_lineItems = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Orgs $_orgs
+     * @var ?Orgs $_orgs
      */
     protected ?Orgs $_orgs = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Results $_results
+     * @var ?Results $_results
      */
     protected ?Results $_results = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Schools $_schools Routing
+     * @var ?Schools $_schools Routing
      *   class for the subnamespace `Schools`
      */
     protected ?Schools $_schools = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Users $_users
+     * @var ?Users $_users
      */
     protected ?Users $_users = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Teachers $_teachers Routing
+     * @var ?Teachers $_teachers Routing
      *   class for the subnamespace `Teachers`
      */
     protected ?Teachers $_teachers = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Students $_students
+     * @var ?Students $_students
      */
     protected ?Students $_students = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Demographics $_demographics
+     * @var ?Demographics $_demographics
      */
     protected ?Demographics $_demographics = null;
 }

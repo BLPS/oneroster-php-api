@@ -2,23 +2,20 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
- * @property ?\Kroscom\OneRosterAPI\Components\AcademicSessionModel[]
- *   $academicSessions
- * @property ?\Kroscom\OneRosterAPI\Components\StatusInfoModel[]
- *   $statusInfoSet
- *
  * @api
  */
-class AcademicSessionsOutputModel extends BaseComponent
+class AcademicSessionsOutputModel extends BaseCollection
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "academicSessions" => "\Kroscom\OneRosterAPI\Components\AcademicSessionModel[]",
-        "statusInfoSet" => "\Kroscom\OneRosterAPI\Components\StatusInfoModel[]",
-    ];
+    protected static string $collectionKey = "academicSessions";
+
+    /**
+     * @var string
+     */
+    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\AcademicSessionModel[]";
 }

@@ -2,12 +2,10 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
- * @property \Kroscom\OneRosterAPI\Components\ORUserModel $user
- * @property ?\Kroscom\OneRosterAPI\Components\StatusInfoModel[]
- *   $statusInfoSet
+ * @property \Kroscom\OneRosterAPI\Components\UserModel $user
  *
  * @api
  */
@@ -17,7 +15,6 @@ class UserOutputModel extends BaseComponent
      * @var string[] $fields
      */
     protected static array $fields = [
-        "user" => "\Kroscom\OneRosterAPI\Components\ORUserModel",
-        "statusInfoSet" => "\Kroscom\OneRosterAPI\Components\StatusInfoModel[]",
+        "user" => "\Kroscom\OneRosterAPI\Components\UserModel"
     ];
 }

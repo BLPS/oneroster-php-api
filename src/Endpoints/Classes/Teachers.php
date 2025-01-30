@@ -1,43 +1,36 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Classes;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
 use Kroscom\OneRosterAPI\Components\UsersOutputModel;
 
 /**
  * @api
  */
-class Teachers extends BaseEndpoint
+class Teachers extends SubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/classes/{class_id}/teachers";
+    protected string $endpoint = "classes/{parent_id}/teachers";
 
     /**
-     * Returns a collection of teacher user data for the specified
-     * ```class\_id```.
-     *
-     *  Roles returned include:
-     *
-     * - Teacher
-     *
-     * - Pending Teacher
-     *
-     * @param array{class_id: string} $params An associative array
-     *     - class_id: sourcedId for the class
-     *
-     * @return \Kroscom\OneRosterAPI\Components\UsersOutputModel Success
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getByClassId(array $params): UsersOutputModel
-    {
-        assert(isset($params['class_id']), new ArgumentException("Parameter `class_id` is required"));
+    protected string $modelName = "user";
 
-        return new UsersOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['class_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of teacher user data for the specified $class_id
+     *
+     * @param string|int|float $class_id
+     * @param array $params
+     * @return UsersOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getByClassId(string|int|float $class_id, array $params = []): UsersOutputModel|BaseComponent
+    {
+        return $this->get($class_id, $params);
     }
 }

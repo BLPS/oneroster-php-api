@@ -2,22 +2,22 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
- * @property ?\Kroscom\OneRosterAPI\Components\ORUserModel[] $users
- * @property ?\Kroscom\OneRosterAPI\Components\StatusInfoModel[]
- *   $statusInfoSet
+ * @property ?\Kroscom\OneRosterAPI\Components\UserModel[] $users
  *
  * @api
  */
-class UsersOutputModel extends BaseComponent
+class UsersOutputModel extends BaseCollection
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "users" => "\Kroscom\OneRosterAPI\Components\ORUserModel[]",
-        "statusInfoSet" => "\Kroscom\OneRosterAPI\Components\StatusInfoModel[]",
-    ];
+    protected static string $collectionKey = "users";
+
+    /**
+     * @var string
+     */
+    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\UserModel[]";
 }

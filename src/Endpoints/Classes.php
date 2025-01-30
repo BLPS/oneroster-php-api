@@ -1,11 +1,7 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
-use Kroscom\OneRosterAPI\Components\ClassOutputModel;
-use Kroscom\OneRosterAPI\Components\ClassesOutputModel;
+use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
 use Kroscom\OneRosterAPI\Endpoints\Classes\Categories;
 use Kroscom\OneRosterAPI\Endpoints\Classes\LineItems;
 use Kroscom\OneRosterAPI\Endpoints\Classes\Results;
@@ -15,26 +11,30 @@ use Kroscom\OneRosterAPI\Endpoints\Classes\Teachers;
 /**
  * Routing class for the subnamespace `Classes`
  *
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes\LineItems $lineItems
+ * @property LineItems $lineItems
  *   Routing class for the subnamespace `LineItems`
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes\Results $results
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes\Teachers $teachers
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes\Students $students
+ * @property Results $results
+ * @property Teachers $teachers
+ * @property Students $students
  *   Routing class for the subnamespace `Students`
- * @property \Kroscom\OneRosterAPI\Endpoints\Classes\Categories $categories
+ * @property Categories $categories
  *
  * @api
  */
-class Classes extends BaseEndpoint
+class Classes extends Endpoint
 {
     /**
-     * @var string $url
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/classes/{id}";
+    protected string $endpoint = "classes";
 
     /**
-     * @var array<string, class-string<\Battis\OpenAPI\Client\BaseEndpoint>>
-     *   $endpoints Routing subpaths
+     * @var string
+     */
+    protected string $modelName = "class";
+
+    /**
+     * @var array $endpoints Routing subpaths
      */
     protected array $endpoints = [
         "lineItems" => "\Kroscom\OneRosterAPI\Endpoints\Classes\LineItems",
@@ -45,60 +45,30 @@ class Classes extends BaseEndpoint
     ];
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes\LineItems $_lineItems
+     * @var ?LineItems $_lineItems
      *   Routing class for the subnamespace `LineItems`
      */
     protected ?LineItems $_lineItems = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes\Results $_results
+     * @var ?Results $_results
      */
     protected ?Results $_results = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes\Teachers $_teachers
+     * @var ?Teachers $_teachers
      */
     protected ?Teachers $_teachers = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes\Students $_students
+     * @var ?Students $_students
      *   Routing class for the subnamespace `Students`
      */
     protected ?Students $_students = null;
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Classes\Categories
+     * @var ?Categories
      *   $_categories
      */
     protected ?Categories $_categories = null;
-
-    /**
-     * Returns a collection of classes.
-     *
-     * @return \Kroscom\OneRosterAPI\Components\ClassesOutputModel OK - It
-     *   was possible to read the collection.
-     */
-    public function get(): ClassesOutputModel
-    {
-        return new ClassesOutputModel($this->send("get", [], []));
-    }
-
-    /**
-     * Returns a specific class.
-     *
-     * @param array{id: string} $params An associative array
-     *     - id: sourcedId for the class
-     *
-     * @return \Kroscom\OneRosterAPI\Components\ClassOutputModel OK - It
-     *   was possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
-     */
-    public function getById(array $params): ClassOutputModel
-    {
-        assert(isset($params['id']), new ArgumentException("Parameter `id` is required"));
-
-        return new ClassOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['id']), ARRAY_FILTER_USE_KEY), []));
-    }
 }

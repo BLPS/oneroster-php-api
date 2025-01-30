@@ -2,48 +2,20 @@
 
 namespace Kroscom\OneRosterAPI\Endpoints;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
-use Kroscom\OneRosterAPI\Components\OrgOutputModel;
-use Kroscom\OneRosterAPI\Components\OrgsOutputModel;
+use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api
  */
-class Orgs extends BaseEndpoint
+class Orgs extends Endpoint
 {
     /**
-     * @var string $url
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/orgs/{id}";
+    protected string $endpoint = "orgs";
 
     /**
-     * Returns a collection of organizations.
-     *
-     * @return \Kroscom\OneRosterAPI\Components\OrgsOutputModel OK - It was
-     *   possible to read the collection.
+     * @var string
      */
-    public function get(): OrgsOutputModel
-    {
-        return new OrgsOutputModel($this->send("get", [], []));
-    }
-
-    /**
-     * Returns a specific org.
-     *
-     * @param array{id: string} $params An associative array
-     *     - id: sourcedId for the org
-     *
-     * @return \Kroscom\OneRosterAPI\Components\OrgOutputModel OK - It was
-     *   possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
-     */
-    public function getById(array $params): OrgOutputModel
-    {
-        assert(isset($params['id']), new ArgumentException("Parameter `id` is required"));
-
-        return new OrgOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['id']), ARRAY_FILTER_USE_KEY), []));
-    }
+    protected string $modelName = "org";
 }

@@ -1,37 +1,36 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Classes;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
 use Kroscom\OneRosterAPI\Components\CategoriesOutputModel;
 
 /**
  * @api
  */
-class Categories extends BaseEndpoint
+class Categories extends SubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/classes/{class_id}/categories";
+    protected string $endpoint = "classes/{parent_id}/categories";
 
     /**
-     * Returns a collection of categories for a specified ```class\_id```.
-     *
-     * @param array{class_id: string} $params An associative array
-     *     - class_id: sourcedId for the category
-     *
-     * @return \Kroscom\OneRosterAPI\Components\CategoriesOutputModel OK -
-     *   It was possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getByClassId(array $params): CategoriesOutputModel
-    {
-        assert(isset($params['class_id']), new ArgumentException("Parameter `class_id` is required"));
+    protected string $modelName = "category";
 
-        return new CategoriesOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['class_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of categories for a specified $class_id
+     *
+     * @param string|int|float $class_id
+     * @param array $params
+     * @return CategoriesOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getByClassId(string|int|float $class_id, array $params = []): CategoriesOutputModel|BaseComponent
+    {
+        return $this->get($class_id, $params);
     }
 }

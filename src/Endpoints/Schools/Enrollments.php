@@ -1,37 +1,36 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Schools;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
 use Kroscom\OneRosterAPI\Components\EnrollmentsOutputModel;
 
 /**
  * @api
  */
-class Enrollments extends BaseEndpoint
+class Enrollments extends SubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/schools/{school_id}/enrollments";
+    protected string $endpoint = "schools/{parent_id}/enrollments";
 
     /**
-     * Returns a collection of enrollments for the specified ```school\_id```.
-     *
-     * @param array{school_id: string} $params An associative array
-     *     - school_id: sourcedId for the school
-     *
-     * @return \Kroscom\OneRosterAPI\Components\EnrollmentsOutputModel OK -
-     *   It was possible to read the collection.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getBySchoolId(array $params): EnrollmentsOutputModel
-    {
-        assert(isset($params['school_id']), new ArgumentException("Parameter `school_id` is required"));
+    protected string $modelName = "enrollment";
 
-        return new EnrollmentsOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['school_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of enrollments for the specified $school_id
+     *
+     * @param string|int|float $school_id
+     * @param array $params
+     * @return EnrollmentsOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getBySchoolId(string|int|float $school_id, array $params = []): EnrollmentsOutputModel|BaseComponent
+    {
+        return $this->get($school_id, $params);
     }
 }

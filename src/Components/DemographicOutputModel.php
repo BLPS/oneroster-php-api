@@ -2,10 +2,10 @@
 
 namespace Kroscom\OneRosterAPI\Components;
 
-use Battis\OpenAPI\Client\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
- * @property \Kroscom\OneRosterAPI\Components\ORDemographicModel
+ * @property \Kroscom\OneRosterAPI\Components\DemographicModel
  *   $demographic
  *
  * @api
@@ -16,6 +16,6 @@ class DemographicOutputModel extends BaseComponent
      * @var string[] $fields
      */
     protected static array $fields = [
-        "demographic" => "\Kroscom\OneRosterAPI\Components\ORDemographicModel",
+        "demographic" => "\Kroscom\OneRosterAPI\Components\DemographicModel",
     ];
 }

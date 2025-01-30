@@ -19,6 +19,6 @@
   ],
   "require": {
     "php": "^8.2",
-    "battis/openapi-client.base": "^0.1"
+    "guzzlehttp/guzzle": "^7.9"
   }
 }

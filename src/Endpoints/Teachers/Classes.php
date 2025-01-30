@@ -1,37 +1,36 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Teachers;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
-use Kroscom\OneRosterAPI\Components\ClassOutputModel;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use Kroscom\OneRosterAPI\Components\ClassesOutputModel;
 
 /**
  * @api
  */
-class Classes extends BaseEndpoint
+class Classes extends SubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/teachers/{teacher_id}/classes";
+    protected string $endpoint = "teachers/{parent_id}/classes";
 
     /**
-     * Returns a collection of classes for the specified ```teacher\_id```.
-     *
-     * @param array{teacher_id: string} $params An associative array
-     *     - teacher_id: sourcedId for the teacher
-     *
-     * @return \Kroscom\OneRosterAPI\Components\ClassOutputModel OK - It
-     *   was possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getByTeacherId(array $params): ClassOutputModel
-    {
-        assert(isset($params['teacher_id']), new ArgumentException("Parameter `teacher_id` is required"));
+    protected string $modelName = "class";
 
-        return new ClassOutputModel($this->send("get", array_filter($params, fn($key) => in_array($key, ['teacher_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of classes for the specified $teacher_id
+     *
+     * @param string|int|float $teacher_id
+     * @param array $params
+     * @return ClassesOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getByTeacherId(string|int|float $teacher_id, array $params = []): ClassesOutputModel|BaseComponent
+    {
+        return $this->get($teacher_id, $params);
     }
 }

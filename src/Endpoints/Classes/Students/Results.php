@@ -1,41 +1,37 @@
 <?php
-
 namespace Kroscom\OneRosterAPI\Endpoints\Classes\Students;
 
-use Battis\OpenAPI\Client\BaseEndpoint;
-use Battis\OpenAPI\Client\Exceptions\ArgumentException;
-use Kroscom\OneRosterAPI\Components\ResultsOutputModelSvc;
+use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use GuzzleHttp\Exception\GuzzleException;
+use Kroscom\OneRosterAPI\Client\Endpoints\NestedSubEndpoint;
+use Kroscom\OneRosterAPI\Components\ResultsOutputModel;
 
 /**
  * @api
  */
-class Results extends BaseEndpoint
+class Results extends NestedSubEndpoint
 {
     /**
-     * @var string $url Endpoint URL pattern
+     * @var string
      */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/classes/{class_id}/students/{student_id}/results";
+    protected string $endpoint = "classes/{parent_id}/students/{id}/results";
 
     /**
-     * Returns a collection of results for a specified ```class\_id``` and
-     * ```student\_id```.
-     *
-     * @param array{class_id: string, student_id: string} $params An
-     *   associative array
-     *     - class_id: sourcedId for the class
-     *     - student_id: sourcedId for the student
-     *
-     * @return \Kroscom\OneRosterAPI\Components\ResultsOutputModelSvc OK -
-     *   It was possible to read the resource.
-     *
-     * @throws \Battis\OpenAPI\Client\Exceptions\ArgumentException if required
-     *   parameters are not defined
+     * @var string
      */
-    public function getByClassIdAndStudentId(array $params): ResultsOutputModelSvc
-    {
-        assert(isset($params['class_id']), new ArgumentException("Parameter `class_id` is required"));
-        assert(isset($params['student_id']), new ArgumentException("Parameter `student_id` is required"));
+    protected string $modelName = "result";
 
-        return new ResultsOutputModelSvc($this->send("get", array_filter($params, fn($key) => in_array($key, ['class_id','student_id']), ARRAY_FILTER_USE_KEY), []));
+    /**
+     * Returns a collection of results for a specified $class_id and $student_id
+     *
+     * @param string|int|float $class_id
+     * @param string|int|float $student_id
+     * @param array $params
+     * @return ResultsOutputModel|BaseComponent
+     * @throws GuzzleException
+     */
+    public function getByClassIdAndStudentId(string|int|float $class_id, string|int|float $student_id, array $params = []): ResultsOutputModel|BaseComponent
+    {
+        return $this->get($class_id, $student_id, $params);
     }
 }
