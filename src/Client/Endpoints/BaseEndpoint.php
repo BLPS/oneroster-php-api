@@ -169,7 +169,7 @@ abstract class BaseEndpoint
         $model->setOffset($queryParams['offset'] ?? null);
         $model->setFields($queryParams['fields'] ?? null);
         $model->setFilter($queryParams['filter'] ?? null);
-        $model->setApiClient($this->api);
+        $model->setEndpoint($this);
 
         return $model;
     }

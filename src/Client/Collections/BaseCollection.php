@@ -2,6 +2,7 @@
 namespace Kroscom\OneRosterAPI\Client\Collections;
 
 use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use Kroscom\OneRosterAPI\Client\Endpoints\BaseEndpoint;
 use Kroscom\OneRosterAPI\Client\OneRosterClient;
 use Kroscom\OneRosterAPI\OneRosterAPI;
 
@@ -32,11 +33,10 @@ class BaseCollection extends BaseComponent
      */
     protected ?int $_offset = 0;
 
-
     /**
-     * @var OneRosterClient|null
+     * @var BaseEndpoint|null
      */
-    protected ?OneRosterClient $api  = null;
+    protected ?BaseEndpoint $_endpoint = null;
 
     /**
      * @var string|array|null
@@ -210,23 +210,13 @@ class BaseCollection extends BaseComponent
     }
 
     /**
-     * @param OneRosterClient|null $apiClient
+     * @param BaseEndpoint|null $endpoint
      * @return $this
      */
-    public function setApiClient(OneRosterClient $apiClient = null): static
+    public function setEndpoint(?BaseEndpoint $endpoint): static
     {
-        $this->api = $apiClient;
+        $this->_endpoint = $endpoint;
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getClassKey(): string
-    {
-        $name = explode('\\', get_class($this));
-        $name = end($name);
-        return str_replace('outputmodel', '', strtolower($name));
     }
 
     /**
@@ -255,20 +245,19 @@ class BaseCollection extends BaseComponent
      */
     public function getPageByOffset(int $offset): static
     {
-        $classKey = $this->getClassKey();
-
         $fields = $this->getFields();
         $filter = $this->getFilter();
         $limit = $this->getLimit();
 
-        $queryData = [];
-        if(!empty($fields)) { $queryData['fields'] = $fields; }
-        if(!empty($filter)) { $queryData['filter'] = $filter; }
-        $queryData['limit'] = $limit;
-        $queryData['offset'] = $offset;
+        $params = [];
+        if(!empty($fields)) { $params['fields'] = $fields; }
+        if(!empty($filter)) { $params['filter'] = $filter; }
+        $params['limit'] = $limit;
+        $params['offset'] = $offset;
 
-        $api = new OneRosterAPI($this->api);
-
-        return $api->$classKey->get($queryData);
+        $api = $this->_endpoint;
+//        $api->setId($this->getId());
+//        $api->setParentId($this->getParentId());
+        return $api->get($params);
     }
 }
