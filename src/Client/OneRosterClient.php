@@ -4,6 +4,7 @@ namespace Kroscom\OneRosterAPI\Client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 class OneRosterClient
 {
@@ -59,96 +60,144 @@ class OneRosterClient
     /**
      * @param string $endpoint
      * @param array $params
-     * @return mixed
+     * @return ResponseInterface
      * @throws GuzzleException
      * @throws \Exception
      */
-    public function get(string $endpoint, array $params = []): mixed
+    public function get(string $endpoint, array $params = []): ResponseInterface
     {
         $url = $this->baseUrl . $this->getOneRosterPath() . '/' . ltrim($endpoint, '/');
 
+        // Add query parameters
+        if(isset($params['data'])) {
+            if(!empty($params['data'])) {
+                $urlParts = [];
+                foreach($params['data'] as $key => $value) {
+                    $urlParts[] = $key . '=' . $value;
+                }
+                $url .= '?' . implode('&', $urlParts);
+            }
+            unset($params['data']);
+        }
+
         // Add OAuth1 headers
-        $headers = $this->getOAuthHeaders('GET', $url);
+        $headers = $this->getOAuthHeader($url, true);
 
         // Make the request
         $response = $this->client->get($url, [
-            'headers' => $headers,
-            'query' => $params,
+            'headers' => $headers/*,
+            'query' => $params,*/
         ]);
 
-        return json_decode($response->getBody(), true);
+        $contentType = $response->getHeader('Content-Type')[0] ?? null;
+//        $count = $response->getHeader('x-count')[0] ?? null;
+//        $total = $response->getHeader('x-total-count')[0] ?? 0;
+
+        $statusCode = $response->getStatusCode();
+        if($statusCode < 200 || $statusCode >= 300) {
+            $message = 'Unknown error';
+            if($contentType === 'application/json') {
+                $response = json_decode($response->getBody());
+                if(isset($response->message)) {
+                    $message = $response->message;
+                }
+            }
+            throw new \Exception('OneRoster API Error: ' . $message);
+        }
+
+        return $response;
     }
 
     /**
-     * @param string $endpoint
-     * @param array $data
-     * @return mixed
-     * @throws GuzzleException
-     * @throws \Exception
-     */
-    public function post(string $endpoint, array $data = []): mixed
-    {
-        $url = $this->baseUrl . $this->getOneRosterPath() . '/' . ltrim($endpoint, '/');
-
-        // Add OAuth1 headers
-        $headers = $this->getOAuthHeaders('POST', $url);
-
-        // Make the request
-        $response = $this->client->post($url, [
-            'headers' => $headers,
-            'json' => $data,
-        ]);
-
-        return json_decode($response->getBody(), true);
-    }
-
-    /**
-     * @param string $method
      * @param string $url
-     * @return string[]
+     * @param bool $split
+     * @return string|array
      */
-    private function getOAuthHeaders(string $method, string $url): array
+    private function getOAuthHeader(string $url, bool $split = false): string|array
     {
         $timestamp = strval(time());
         $nonce = $this->generateNonce(strlen($timestamp));
 
-        $oauthHeaders = [
-            'oauth_consumer_key' => $this->clientKey,
-            'oauth_nonce' => $nonce,
-            'oauth_signature_method' => 'HMAC-SHA1',
+        // Assign the oauth params
+        $oauth = [ 'oauth_consumer_key' => $this->clientKey,
+            'oauth_signature_method' => 'HMAC-SHA256',
             'oauth_timestamp' => $timestamp,
-            'oauth_version' => '1.0',
-        ];
+            'oauth_nonce' => $nonce];
 
+        // Split the url into the base url and the params
+        $url_pieces = explode("?", $url);
+        $params = $oauth;
 
-        // Generate the signature
-        $baseString = $this->buildBaseString($method, $url, $oauthHeaders);
-        $signatureKey = rawurlencode($this->clientSecret) . '&';
-        $oauthHeaders['oauth_signature'] = base64_encode(hash_hmac('sha1', $baseString, $signatureKey, true));
-
-        // Build the Authorization header
-        $authHeader = 'OAuth ';
-        $values = [];
-        foreach ($oauthHeaders as $key => $value) {
-            $values[] = "$key=\"" . rawurlencode($value) . "\"";
+        // Add the url params if they exist
+        if (count($url_pieces) == 2) {
+            $url_params = $this->paramsToArray($url_pieces[1]);
+            $params = array_merge($params, $url_params);
         }
-        $authHeader .= implode(', ', $values);
 
-        return [
-            'Authorization' => $authHeader,
-        ];
+        // Generate the oauth signature
+        $base_info = $this->buildBaseString($url_pieces[0], 'GET', $params);
+        $composite_key = rawurlencode($this->clientSecret) . '&';
+        $oauth_signature = base64_encode(hash_hmac('SHA256', $base_info, $composite_key, true));
+        $oauth['oauth_signature'] = $oauth_signature;
+
+        if($split === true) {
+            return ['Authorization' => $this->buildAuthorizationHeader($oauth)];
+        }
+
+        // Create the oauth header
+        return 'Authorization: '.$this->buildAuthorizationHeader($oauth);
     }
 
-
-    private function buildBaseString(string $method, string $url, array $params): string
+    /**
+     * @param array $oauthinfo
+     * @return string
+     */
+    private function buildAuthorizationHeader(array $oauthinfo): string
     {
-        $parts = [
-            strtoupper($method),
-            rawurlencode($url),
-            rawurlencode(http_build_query($params, '', '&', PHP_QUERY_RFC3986)),
-        ];
+        $r = 'OAuth ';
+        $values = array();
+        foreach ($oauthinfo as $key => $value)
+            $values[] = "$key=\"" . rawurlencode($value) . "\"";
 
-        return implode('&', $parts);
+        $r .= implode(',', $values);
+        return $r;
+    }
+
+    /**
+     * @param $url_params
+     * @return array
+     */
+    private function paramsToArray($url_params): array
+    {
+        $params = explode("&", $url_params);
+        $result = [];
+        foreach ($params as $value) {
+            $value = rawurldecode($value);
+            $split = explode("=", $value);
+            if (count($split) == 2) {
+                $result[$split[0]] = $split[1];
+            } else {
+                $result["filter"] = substr($value, 7);
+            }
+
+        }
+        return $result;
+    }
+
+    /**
+     * @param $baseURI
+     * @param $method
+     * @param $params
+     * @return string
+     */
+    private function buildBaseString($baseURI, $method, $params): string
+    {
+        $r = array();
+        ksort($params);
+        foreach($params as $key=>$value){
+            $r[] = "$key=" . rawurlencode($value);
+        }
+        return $method."&" . rawurlencode($baseURI) . '&' . rawurlencode(implode('&', $r));
     }
 
     /**

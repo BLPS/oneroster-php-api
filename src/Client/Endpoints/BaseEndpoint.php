@@ -38,6 +38,39 @@ abstract class BaseEndpoint
      */
     protected OneRosterClient $api;
 
+    /**
+     * Filter parameters
+     *
+     * @var array
+     */
+    protected array $_where = [];
+
+    /**
+     * Results number per page
+     *
+     * @var int
+     */
+    protected int $_limit = 100;
+
+    /**
+     * Filter offset
+     *
+     * @var int
+     */
+    protected int $_offset = 0;
+
+    /**
+     * Query fields
+     *
+     * @var array
+     */
+    protected array $_fields = [];
+
+    /**
+     * Class constructor
+     *
+     * @param OneRosterClient $api
+     */
     public function __construct(OneRosterClient $api)
     {
         $this->api = $api;
@@ -74,21 +107,32 @@ abstract class BaseEndpoint
      * @param string $endpoint
      * @param array $data
      * @param string $method
-     * @return mixed|null
+     * @return array
      * @throws GuzzleException
      */
-    protected function query(string $endpoint, array $data = [], string $method = 'GET'): mixed
+    protected function query(string $endpoint, array $data = [], string $method = 'GET'): array
     {
-        $result = null;
+        $queryData = [];
+        if(!empty($this->_fields)) {
+            $queryData['fields'] = implode(',', $this->_fields);
+        }
+        if(!empty($this->_where)) {
+            $queryData['filter'] = implode(' AND ', $this->_where);
+        }
+        $queryData['limit'] = !empty($this->_limit) ? $this->_limit : 100;
+        $queryData['offset'] = !empty($this->_offset) ? $this->_offset : 0;
+
+        $params = ['data' => array_merge($queryData, $data)];
+
+        $response = null;
         switch (strtoupper($method)) {
             case 'GET':
-                $result = $this->api->get($endpoint, $data);
-                break;
-            case 'POST':
-                $result = $this->api->post($endpoint, $data);
+                $response= $this->api->get($endpoint, $params);
                 break;
         }
-        return $result;
+        $this->reset();
+
+        return ['response' => $response, 'params' => $params['data']];
     }
 
     /**
@@ -105,7 +149,29 @@ abstract class BaseEndpoint
         $url = $this->endpoint;
         $url = str_replace('{parent_id}', $this->parentId, $url);
         $url = str_replace('{id}', $this->id, $url);
-        return new $modelName($this->query($url, $params));
+
+        $result         = $this->query($url, $params);
+        $response       = $result['response'];
+        $queryParams    = $result['params'];
+
+        $data           = json_decode($response->getBody(), true);
+
+        $countLimit     = $response->getHeader('x-count')[0] ?? null;
+        $total          = $response->getHeader('x-total-count')[0] ?? 0;
+
+        $limit = $countLimit !== null ? $countLimit : ($queryParams['limit'] ?? 100);
+
+        $model = new $modelName($data);
+        $model->setParentId($this->parentId);
+        $model->setId($this->id);
+        $model->setCount($total ?? 0);
+        $model->setLimit($limit);
+        $model->setOffset($queryParams['offset'] ?? null);
+        $model->setFields($queryParams['fields'] ?? null);
+        $model->setFilter($queryParams['filter'] ?? null);
+        $model->setApiClient($this->api);
+
+        return $model;
     }
 
     /**
@@ -134,7 +200,12 @@ abstract class BaseEndpoint
 
         $url = str_replace('{parent_id}', $this->parentId, $url);
 
-        return new $modelName($this->query($url, $params));
+        $result = $this->query($url, $params);
+        $response = $result['response'];
+
+        $data = json_decode($response->getBody(), true);
+
+        return new $modelName($data);
     }
 
     /**
@@ -178,5 +249,83 @@ abstract class BaseEndpoint
             }
         }
         return "\\Kroscom\\OneRosterAPI\\Components\\{$modelName}OutputModel";
+    }
+
+    /**
+     * Add filter parameters
+     *
+     * @param string $field Search field.
+     * @param string $param1 Search value or operator. Operators: =,!=,>,>=,<,<=,~. Default: ~.
+     * @param mixed|null $param2 Search value.
+     * @return $this
+     * @throws Exception
+     */
+    public function where(string $field, string $param1, mixed $param2 = null): static
+    {
+        $operators = ['=', '!=', '>', '>=', '<', '<=', '~'];
+        $operator = '~';
+        $value = $param1;
+        if(!is_null($param2)) {
+            if(trim($param2) === '') { throw new Exception('Search value is empty!'); }
+            if(!in_array($param1, $operators)) { throw new Exception('Search operator is not valid!'); }
+            $value = $param2;
+            $operator = $param1;
+        } else {
+            if(trim($param1) === '') { throw new Exception('Search value is empty!'); }
+        }
+        if(is_array($value)) {
+            $string = implode(',', $value);
+            $this->_where[] = '"'.$field.$operator.str_replace('"', '%22', $string).'"';
+        } else {
+            $this->_where[] = $field.$operator."'".str_replace("'", '%27', $value)."'";
+        }
+        return $this;
+    }
+
+    /**
+     * Set the range of fields to be returned
+     *
+     * @param array|string $fields Fields list. Example fields(['sourcedId', 'name']) or fields('sourcedId,name')
+     * @return $this
+     */
+    public function fields(array|string $fields): static
+    {
+        $this->_fields = is_array($fields) ? $fields : array_map('trim', explode(',', $fields));
+        return $this;
+    }
+
+
+    /**
+     * Set query limit
+     *
+     * @param int $limit
+     * @return $this
+     */
+    public function limit(int $limit): static
+    {
+        $this->_limit = $limit;
+        return $this;
+    }
+
+    /**
+     * Set query offset
+     *
+     * @param int $offset
+     * @return $this
+     */
+    public function offset(int $offset): static
+    {
+        $this->_offset = $offset;
+        return $this;
+    }
+
+    protected function reset(): void
+    {
+        $this->_where = [];
+        $this->_fields = [];
+        $this->_limit = 100;
+        $this->_offset = 0;
+        $this->id = '';
+        $this->parentId = '';
     }
 }

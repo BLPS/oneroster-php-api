@@ -17,7 +17,7 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
      *
      * @var array<string, mixed> $data
      */
-    protected array $data;
+    protected array $data = [];
 
     /**
      * Construct from a JSON object response value from the SKY API
@@ -26,21 +26,23 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
      *
      * @api
      */
-    public function __construct(array $data)
+    public function __construct(array $data = [])
     {
-        if(isset(static::$collectionKey)) {
-            $this->data = $data[static::$collectionKey];
+        if (isset(static::$collectionKey)) {
+            if(isset($data[static::$collectionKey])) {
+                $this->data = $data[static::$collectionKey];
 
-            /** @var class-string $type */
-            $type = preg_replace("/(.+)\\[\\]$/", "$1", static::$collectionModel);
-            $this->data = array_map(
-                fn($elt) => new $type($elt),
-                $this->data
-            );
+                /** @var class-string $type */
+                $type = preg_replace("/(.+)\\[\\]$/", "$1", static::$collectionModel);
+                $this->data = array_map(
+                    fn($elt) => new $type($elt),
+                    $this->data
+                );
+            }
         } else {
             $this->data = $data;
             foreach (static::$fields as $property => $type) {
-                if (str_contains($type, '\\')) {
+                if (str_contains($type, '\\') && isset($this->data[$property])) {
                     /** @var class-string $type */
                     if (str_contains($type, '[]')) {
                         assert(
@@ -61,7 +63,6 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
                 }
             }
         }
-
     }
 
     /**
