@@ -12,9 +12,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class CourseOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "course" => "\Kroscom\OneRosterAPI\Components\CourseModel"
-    ];
+    public static string $key = "course";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\CourseModel";
 }

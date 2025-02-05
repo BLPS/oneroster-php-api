@@ -17,7 +17,7 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
      *
      * @var array<string, mixed> $data
      */
-    protected array $data = [];
+    protected null|array|BaseComponent $data = null;
 
     /**
      * Construct from a JSON object response value from the SKY API
@@ -72,10 +72,10 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
      */
     public function __get(string $name): mixed
     {
-        if (array_key_exists($name, static::$fields)) {
-            if (array_key_exists($name, $this->data)) {
-                return $this->data[$name];
-            } else {
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        } else {
+            if (array_key_exists($name, static::$fields)) {
                 return null;
             }
         }
@@ -108,7 +108,7 @@ abstract class BaseComponent implements JsonSerializable, IteratorAggregate
      */
     public function toArray(): array
     {
-        return $this->data;
+        return json_decode(json_encode($this->data), true);
     }
 
     /**

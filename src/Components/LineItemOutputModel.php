@@ -12,9 +12,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class LineItemOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "lineItem" => "\Kroscom\OneRosterAPI\Components\LineItemModel"
-    ];
+    public static string $key = "lineItem";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\LineItemModel";
 }

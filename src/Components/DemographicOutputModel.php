@@ -13,9 +13,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class DemographicOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "demographic" => "\Kroscom\OneRosterAPI\Components\DemographicModel",
-    ];
+    public static string $key = "demographic";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\DemographicModel";
 }

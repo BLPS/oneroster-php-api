@@ -12,9 +12,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class OrgOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
-     */
-    protected static array $fields = [
-        "org" => "\Kroscom\OneRosterAPI\Components\OrgModel"
-    ];
+    * @var string
+    */
+    public static string $key = "org";
+
+    /**
+    * @var string
+    */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\OrgModel";
 }

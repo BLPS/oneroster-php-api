@@ -209,7 +209,9 @@ abstract class BaseEndpoint
 
         $data = json_decode($response->getBody(), true);
 
-        return new $modelName($data);
+        $model = $modelName::$model;
+
+        return new $model($data[$modelName::$key] ?? []);
     }
 
     /**

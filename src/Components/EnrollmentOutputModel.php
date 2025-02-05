@@ -12,9 +12,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class EnrollmentOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "enrollment" => "\Kroscom\OneRosterAPI\Components\EnrollmentModel"
-    ];
+    public static string $key = "enrollment";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\EnrollmentModel";
 }

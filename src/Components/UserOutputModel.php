@@ -12,9 +12,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class UserOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "user" => "\Kroscom\OneRosterAPI\Components\UserModel"
-    ];
+    public static string $key = "user";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\UserModel";
 }

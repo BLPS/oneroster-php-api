@@ -14,9 +14,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class ResultOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "result" => "\Kroscom\OneRosterAPI\Components\ResultModel"
-    ];
+    public static string $key = "result";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\ResultModel";
 }

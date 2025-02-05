@@ -13,9 +13,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
 class AcademicSessionOutputModel extends BaseComponent
 {
     /**
-     * @var string[] $fields
+     * @var string
      */
-    protected static array $fields = [
-        "academicSession" => "\Kroscom\OneRosterAPI\Components\AcademicSessionModel"
-    ];
+    public static string $key = "academicSession";
+
+    /**
+     * @var string
+     */
+    public static string $model = "\Kroscom\OneRosterAPI\Components\AcademicSessionModel";
 }
