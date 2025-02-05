@@ -159,7 +159,11 @@ abstract class BaseEndpoint
         $countLimit     = $response->getHeader('x-count')[0] ?? null;
         $total          = $response->getHeader('x-total-count')[0] ?? 0;
 
-        $limit = $countLimit !== null ? $countLimit : ($queryParams['limit'] ?? 100);
+        // $limit = $countLimit !== null ? $countLimit : ($queryParams['limit'] ?? 100);
+        $limit = $queryParams['limit'] ?? 100;
+        if(empty($queryParams['limit']) && !empty($countLimit)) {
+          $limit = $countLimit;
+        }
 
         $model = new $modelName($data);
         $model->setParentId($this->parentId);
