@@ -130,7 +130,7 @@ abstract class BaseEndpoint
                 $response= $this->api->get($endpoint, $params);
                 break;
         }
-        $this->reset();
+        // $this->reset();
 
         return ['response' => $response, 'params' => $params['data']];
     }
@@ -323,6 +323,9 @@ abstract class BaseEndpoint
         return $this;
     }
 
+    /**
+     * @return void
+     */
     protected function reset(): void
     {
         $this->_where = [];
