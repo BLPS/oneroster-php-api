@@ -46,6 +46,13 @@ abstract class BaseEndpoint
     protected array $_where = [];
 
     /**
+     * Filter parameters
+     *
+     * @var array
+     */
+    protected array $_or_where = [];
+
+    /**
      * Results number per page
      *
      * @var int
@@ -118,6 +125,9 @@ abstract class BaseEndpoint
         }
         if(!empty($this->_where)) {
             $queryData['filter'] = implode(' AND ', $this->_where);
+        }
+        if(!empty($this->_or_where)) {
+            $queryData['filter'] = implode(' OR ', $this->_or_where);
         }
         $queryData['limit'] = !empty($this->_limit) ? $this->_limit : 100;
         $queryData['offset'] = !empty($this->_offset) ? $this->_offset : 0;
@@ -272,7 +282,7 @@ abstract class BaseEndpoint
         $operator = '~';
         $value = $param1;
         if(!is_null($param2)) {
-            if(trim($param2) === '') { throw new Exception('Search value is empty!'); }
+            if(is_string($param2) && trim($param2) === '') { throw new Exception('Search value is empty!'); }
             if(!in_array($param1, $operators)) { throw new Exception('Search operator is not valid!'); }
             $value = $param2;
             $operator = $param1;
@@ -284,6 +294,37 @@ abstract class BaseEndpoint
             $this->_where[] = '"'.$field.$operator.str_replace('"', '%22', $string).'"';
         } else {
             $this->_where[] = $field.$operator."'".str_replace("'", '%27', $value)."'";
+        }
+        return $this;
+    }
+
+    /**
+     * Add filter parameters
+     *
+     * @param string $field Search field.
+     * @param string $param1 Search value or operator. Operators: =,!=,>,>=,<,<=,~. Default: ~.
+     * @param mixed|null $param2 Search value.
+     * @return $this
+     * @throws Exception
+     */
+    public function orWhere(string $field, string $param1, mixed $param2 = null): static
+    {
+        $operators = ['=', '!=', '>', '>=', '<', '<=', '~'];
+        $operator = '~';
+        $value = $param1;
+        if(!is_null($param2)) {
+            if(is_string($param2) && trim($param2) === '') { throw new Exception('Search value is empty!'); }
+            if(!in_array($param1, $operators)) { throw new Exception('Search operator is not valid!'); }
+            $value = $param2;
+            $operator = $param1;
+        } else {
+            if(trim($param1) === '') { throw new Exception('Search value is empty!'); }
+        }
+        if(is_array($value)) {
+            $string = implode(',', $value);
+            $this->_or_where[] = '"'.$field.$operator.str_replace('"', '%22', $string).'"';
+        } else {
+            $this->_or_where[] = $field.$operator."'".str_replace("'", '%27', $value)."'";
         }
         return $this;
     }
@@ -331,6 +372,7 @@ abstract class BaseEndpoint
     protected function reset(): void
     {
         $this->_where = [];
+        $this->_or_where = [];
         $this->_fields = [];
         $this->_limit = 100;
         $this->_offset = 0;
