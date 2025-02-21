@@ -33,6 +33,8 @@ class Enrollments extends NestedSubEndpoint
      */
     public function getByClassIdAndStudentId(string|int|float $school_id, string|int|float $class_id, array $params = []): EnrollmentsOutputModel|BaseComponent
     {
-        return $this->get($school_id, $class_id, $params);
+        $this->setParentId($school_id);
+        $this->setId($class_id);
+        return $this->get($params);
     }
 }

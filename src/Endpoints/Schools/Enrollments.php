@@ -31,6 +31,7 @@ class Enrollments extends SubEndpoint
      */
     public function getBySchoolId(string|int|float $school_id, array $params = []): EnrollmentsOutputModel|BaseComponent
     {
-        return $this->get($school_id, $params);
+        $this->setParentId($school_id);
+        return $this->get($params);
     }
 }

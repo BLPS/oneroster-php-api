@@ -32,6 +32,7 @@ class Courses extends SubEndpoint
      */
     public function getBySchoolId(string|int|float $school_id, array $params = []): CoursesOutputModel|BaseComponent
     {
-        return $this->get($school_id, $params);
+        $this->setParentId($school_id);
+        return $this->get($params);
     }
 }

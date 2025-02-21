@@ -32,6 +32,8 @@ class Results extends NestedSubEndpoint
      */
     public function getByClassIdAndStudentId(string|int|float $class_id, string|int|float $student_id, array $params = []): ResultsOutputModel|BaseComponent
     {
-        return $this->get($class_id, $student_id, $params);
+        $this->setParentId($class_id);
+        $this->setId($student_id);
+        return $this->get($params);
     }
 }

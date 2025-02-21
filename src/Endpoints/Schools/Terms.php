@@ -31,6 +31,7 @@ class Terms extends SubEndpoint
      */
     public function getBySchoolId(string|int|float $school_id, array $params = []): AcademicSessionsOutputModel|BaseComponent
     {
-        return $this->get($school_id, $params);
+        $this->setParentId($school_id);
+        return $this->get($params);
     }
 }

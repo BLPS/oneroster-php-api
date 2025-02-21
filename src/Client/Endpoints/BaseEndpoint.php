@@ -367,9 +367,9 @@ abstract class BaseEndpoint
     }
 
     /**
-     * @return void
+     * @return $this
      */
-    protected function reset(): void
+    protected function reset(): static
     {
         $this->_where = [];
         $this->_or_where = [];
@@ -378,5 +378,6 @@ abstract class BaseEndpoint
         $this->_offset = 0;
         $this->id = '';
         $this->parentId = '';
+        return $this;
     }
 }

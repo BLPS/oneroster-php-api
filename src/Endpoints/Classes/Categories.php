@@ -31,6 +31,7 @@ class Categories extends SubEndpoint
      */
     public function getByClassId(string|int|float $class_id, array $params = []): CategoriesOutputModel|BaseComponent
     {
-        return $this->get($class_id, $params);
+        $this->setParentId($class_id);
+        return $this->get($params);
     }
 }

@@ -31,6 +31,7 @@ class Classes extends SubEndpoint
      */
     public function getByTeacherId(string|int|float $teacher_id, array $params = []): ClassesOutputModel|BaseComponent
     {
-        return $this->get($teacher_id, $params);
+        $this->setParentId($teacher_id);
+        return $this->get($params);
     }
 }

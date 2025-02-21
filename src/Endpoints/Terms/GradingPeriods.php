@@ -31,6 +31,7 @@ class GradingPeriods extends SubEndpoint
      */
     public function getByTermId(string|int|float $term_id, array $params = []): AcademicSessionsOutputModel|BaseComponent
     {
-        return $this->get($term_id, $params);
+        $this->setParentId($term_id);
+        return $this->get($params);
     }
 }

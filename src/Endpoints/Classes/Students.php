@@ -48,6 +48,7 @@ class Students extends SubEndpoint
      */
     public function getByClassId(string|int|float $class_id, array $params = []): UsersOutputModel|BaseComponent
     {
-        return $this->get($class_id, $params);
+        $this->setParentId($class_id);
+        return $this->get($params);
     }
 }
