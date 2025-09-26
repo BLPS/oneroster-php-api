@@ -1,10 +1,10 @@
 <?php
-namespace Kroscom\OneRosterAPI\Endpoints\Schools;
+namespace BLPS\OneRosterAPI\Endpoints\Schools;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
-use Kroscom\OneRosterAPI\Components\UsersOutputModel;
+use BLPS\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use BLPS\OneRosterAPI\Components\UsersOutputModel;
 
 /**
  * @api
@@ -20,11 +20,6 @@ class Students extends SubEndpoint
      * @var string
      */
     protected string $modelName = "user";
-
-    /**
-     * @var string $url Endpoint URL pattern
-     */
-    protected string $url = "https://api.sky.blackbaud.com/afe-rostr/ims/oneroster/v1p1/schools/{school_id}/students";
 
     /**
      * Returns a collection of student user data for the specified $school_id

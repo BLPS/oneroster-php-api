@@ -1,8 +1,8 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $imsx_codeMajor

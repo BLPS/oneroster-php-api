@@ -1,7 +1,7 @@
 <?php
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api
@@ -23,13 +23,13 @@ class Results extends Endpoint
 //     *
 //     * @param array{id: string} $params An associative array
 //     *     - id: sourcedId for the result
-//     * @param \Kroscom\OneRosterAPI\Components\ResultInputModelSvc
+//     * @param \BLPS\OneRosterAPI\Components\ResultInputModelSvc
 //     *   $requestBody input model for the result
 //     *
-//     * @return \Kroscom\OneRosterAPI\Components\ResultOutputModelSvc OK -
+//     * @return \BLPS\OneRosterAPI\Components\ResultOutputModelSvc OK -
 //     *   It was possible to read the resource.
 //     *
-//     * @throws \Kroscom\OneRosterAPI\Client\Exceptions\ArgumentException if required
+//     * @throws \BLPS\OneRosterAPI\Client\Exceptions\ArgumentException if required
 //     *   parameters are not defined
 //     */
 //    public function putById(array $params, ResultInputModelSvc $requestBody): ResultOutputModelSvc
@@ -46,10 +46,10 @@ class Results extends Endpoint
 //     * @param array{id: string} $params An associative array
 //     *     - id: sourcedId for the result
 //     *
-//     * @return \Kroscom\OneRosterAPI\Components\ResultsOutputModelSvc OK -
+//     * @return \BLPS\OneRosterAPI\Components\ResultsOutputModelSvc OK -
 //     *   Resource has been deleted.
 //     *
-//     * @throws \Kroscom\OneRosterAPI\Client\Exceptions\ArgumentException if required
+//     * @throws \BLPS\OneRosterAPI\Client\Exceptions\ArgumentException if required
 //     *   parameters are not defined
 //     */
 //    public function deleteById(array $params): ResultsOutputModelSvc

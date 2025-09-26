@@ -1,10 +1,10 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Endpoints;
+namespace BLPS\OneRosterAPI\Client\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\OneRosterClient;
+use BLPS\OneRosterAPI\Client\OneRosterClient;
 
 abstract class BaseEndpoint
 {
@@ -264,7 +264,7 @@ abstract class BaseEndpoint
                 $modelName = $lastChars === 'ss' ? $modelName.'es' : $modelName.'s';
             }
         }
-        return "\\Kroscom\\OneRosterAPI\\Components\\{$modelName}OutputModel";
+        return "\\BLPS\\OneRosterAPI\\Components\\{$modelName}OutputModel";
     }
 
     /**

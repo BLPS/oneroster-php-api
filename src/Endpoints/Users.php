@@ -1,8 +1,8 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api

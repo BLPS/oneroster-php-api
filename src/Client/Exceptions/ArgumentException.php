@@ -1,4 +1,4 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Exceptions;
+namespace BLPS\OneRosterAPI\Client\Exceptions;
 
 class ArgumentException extends ClientException {}

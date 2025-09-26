@@ -1,7 +1,7 @@
 <?php
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api
@@ -23,13 +23,13 @@ class LineItems extends Endpoint
 //     *
 //     * @param array{id: string} $params An associative array
 //     *     - id: sourcedId for the lineItem
-//     * @param \Kroscom\OneRosterAPI\Components\LineItemInputModel
+//     * @param \BLPS\OneRosterAPI\Components\LineItemInputModel
 //     *   $requestBody input model for the lineItem
 //     *
-//     * @return \Kroscom\OneRosterAPI\Components\LineItemOutputModel OK - It
+//     * @return \BLPS\OneRosterAPI\Components\LineItemOutputModel OK - It
 //     *   was possible to read the resource.
 //     *
-//     * @throws \Kroscom\OneRosterAPI\Client\Exceptions\ArgumentException if required
+//     * @throws \BLPS\OneRosterAPI\Client\Exceptions\ArgumentException if required
 //     *   parameters are not defined
 //     */
 //    public function putById(array $params, LineItemInputModel $requestBody): LineItemOutputModel

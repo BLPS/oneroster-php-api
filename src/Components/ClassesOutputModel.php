@@ -1,11 +1,11 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
+use BLPS\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
- * @property ?\Kroscom\OneRosterAPI\Components\ClassModel[] $classes
+ * @property ?\BLPS\OneRosterAPI\Components\ClassModel[] $classes
  *
  * @api
  */
@@ -19,5 +19,5 @@ class ClassesOutputModel extends BaseCollection
     /**
      * @var string
      */
-    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\ClassModel[]";
+    protected static string $collectionModel = "\BLPS\OneRosterAPI\Components\ClassModel[]";
 }

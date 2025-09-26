@@ -1,10 +1,10 @@
 <?php
-namespace Kroscom\OneRosterAPI\Endpoints\Classes;
+namespace BLPS\OneRosterAPI\Endpoints\Classes;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
-use Kroscom\OneRosterAPI\Components\UsersOutputModel;
+use BLPS\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use BLPS\OneRosterAPI\Components\UsersOutputModel;
 
 /**
  * @api

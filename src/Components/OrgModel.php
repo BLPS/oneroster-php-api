@@ -1,15 +1,15 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $name
  * @property ?string $type
  * @property ?string $identifier
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $parent
- * @property ?\Kroscom\OneRosterAPI\Components\GuidRefModel[] $children
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $parent
+ * @property ?\BLPS\OneRosterAPI\Components\GuidRefModel[] $children
  * @property ?string $sourcedId
  * @property ?string $status
  * @property ?string $dateLastModified
@@ -26,8 +26,8 @@ class OrgModel extends BaseComponent
         "name" => "string",
         "type" => "string",
         "identifier" => "string",
-        "parent" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "children" => "\Kroscom\OneRosterAPI\Components\GuidRefModel[]",
+        "parent" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "children" => "\BLPS\OneRosterAPI\Components\GuidRefModel[]",
         "sourcedId" => "string",
         "status" => "string",
         "dateLastModified" => "string",

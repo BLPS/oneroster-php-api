@@ -1,10 +1,10 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Collections;
+namespace BLPS\OneRosterAPI\Client\Collections;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
-use Kroscom\OneRosterAPI\Client\Endpoints\BaseEndpoint;
-use Kroscom\OneRosterAPI\Client\OneRosterClient;
-use Kroscom\OneRosterAPI\OneRosterAPI;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Endpoints\BaseEndpoint;
+use BLPS\OneRosterAPI\Client\OneRosterClient;
+use BLPS\OneRosterAPI\OneRosterAPI;
 
 class BaseCollection extends BaseComponent
 {

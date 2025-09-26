@@ -1,8 +1,8 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $title
@@ -11,12 +11,12 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
  * @property ?string $location
  * @property ?string[] $grades
  * @property ?string[] $subjects
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $course
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $school
- * @property ?\Kroscom\OneRosterAPI\Components\GuidRefModel[] $terms
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $course
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $school
+ * @property ?\BLPS\OneRosterAPI\Components\GuidRefModel[] $terms
  * @property ?string[] $subjectCodes
  * @property ?string[] $periods
- * @property ?\Kroscom\OneRosterAPI\Components\GuidRefModel[] $resources
+ * @property ?\BLPS\OneRosterAPI\Components\GuidRefModel[] $resources
  * @property ?string $sourcedId
  * @property ?string $status
  * @property ?string $dateLastModified
@@ -36,12 +36,12 @@ class ClassModel extends BaseComponent
         "location" => "string",
         "grades" => "string[]",
         "subjects" => "string[]",
-        "course" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "school" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "terms" => "\Kroscom\OneRosterAPI\Components\GuidRefModel[]",
+        "course" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "school" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "terms" => "\BLPS\OneRosterAPI\Components\GuidRefModel[]",
         "subjectCodes" => "string[]",
         "periods" => "string[]",
-        "resources" => "\Kroscom\OneRosterAPI\Components\GuidRefModel[]",
+        "resources" => "\BLPS\OneRosterAPI\Components\GuidRefModel[]",
         "sourcedId" => "string",
         "status" => "string",
         "dateLastModified" => "string",

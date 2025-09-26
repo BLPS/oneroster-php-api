@@ -1,6 +1,6 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Client;
+namespace BLPS\OneRosterAPI\Client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;

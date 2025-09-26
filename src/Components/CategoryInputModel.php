@@ -1,11 +1,11 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
- * @property \Kroscom\OneRosterAPI\Components\CategoryModel $category
+ * @property \BLPS\OneRosterAPI\Components\CategoryModel $category
  *
  * @api
  */
@@ -15,6 +15,6 @@ class CategoryInputModel extends BaseComponent
      * @var string[] $fields
      */
     protected static array $fields = [
-        "category" => "\Kroscom\OneRosterAPI\Components\CategoryModel",
+        "category" => "\BLPS\OneRosterAPI\Components\CategoryModel",
     ];
 }

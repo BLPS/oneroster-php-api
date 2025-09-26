@@ -1,11 +1,11 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints\Schools;
+namespace BLPS\OneRosterAPI\Endpoints\Schools;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
-use Kroscom\OneRosterAPI\Components\CoursesOutputModel;
+use BLPS\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use BLPS\OneRosterAPI\Components\CoursesOutputModel;
 
 /**
  * @api

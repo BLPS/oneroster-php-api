@@ -1,5 +1,5 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Exceptions;
+namespace BLPS\OneRosterAPI\Client\Exceptions;
 
 use Exception;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $user
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $class_
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $school
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $user
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $class_
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $school
  * @property ?string $role
  * @property ?bool $primary
  * @property ?string $beginDate
@@ -25,9 +25,9 @@ class EnrollmentModel extends BaseComponent
      * @var string[] $fields
      */
     protected static array $fields = [
-        "user" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "class" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "school" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
+        "user" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "class" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "school" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
         "role" => "string",
         "primary" => "bool",
         "beginDate" => "string",

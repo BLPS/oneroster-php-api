@@ -1,12 +1,12 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints\Schools;
+namespace BLPS\OneRosterAPI\Endpoints\Schools;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
-use Kroscom\OneRosterAPI\Components\ClassesOutputModel;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Classes\Enrollments;
+use BLPS\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use BLPS\OneRosterAPI\Components\ClassesOutputModel;
+use BLPS\OneRosterAPI\Endpoints\Schools\Classes\Enrollments;
 
 /**
  * Routing class for the subnamespace `Classes`
@@ -29,11 +29,11 @@ class Classes extends SubEndpoint
      * @var array $endpoints Routing subpaths
      */
     protected array $endpoints = [
-        "enrollments" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Classes\Enrollments",
+        "enrollments" => "\BLPS\OneRosterAPI\Endpoints\Schools\Classes\Enrollments",
     ];
 
     /**
-     * @var ?\Kroscom\OneRosterAPI\Endpoints\Schools\Classes\Enrollments
+     * @var ?\BLPS\OneRosterAPI\Endpoints\Schools\Classes\Enrollments
      *   $_enrollments
      */
     protected ?Enrollments $_enrollments = null;

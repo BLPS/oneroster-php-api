@@ -1,7 +1,7 @@
 <?php
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
 
 /**
  * @api
@@ -24,13 +24,13 @@ class Categories extends Endpoint
 //     *
 //     * @param array{id: string} $params An associative array
 //     *     - id: sourcedId for the category
-//     * @param \Kroscom\OneRosterAPI\Components\CategoryInputModel
+//     * @param \BLPS\OneRosterAPI\Components\CategoryInputModel
 //     *   $requestBody input model for a category
 //     *
-//     * @return \Kroscom\OneRosterAPI\Components\CategoryOutputModel OK - It
+//     * @return \BLPS\OneRosterAPI\Components\CategoryOutputModel OK - It
 //     *   was possible to read the resource.
 //     *
-//     * @throws \Kroscom\OneRosterAPI\Client\Exceptions\ArgumentException if required
+//     * @throws \BLPS\OneRosterAPI\Client\Exceptions\ArgumentException if required
 //     *   parameters are not defined
 //     */
 //    public function putById(array $params, CategoryInputModel $requestBody): CategoryOutputModel

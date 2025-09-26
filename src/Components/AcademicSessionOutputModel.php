@@ -1,11 +1,11 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
- * @property \Kroscom\OneRosterAPI\Components\AcademicSessionModel
+ * @property \BLPS\OneRosterAPI\Components\AcademicSessionModel
  *   $academicSession
  *
  * @api
@@ -20,5 +20,5 @@ class AcademicSessionOutputModel extends BaseComponent
     /**
      * @var string
      */
-    public static string $model = "\Kroscom\OneRosterAPI\Components\AcademicSessionModel";
+    public static string $model = "\BLPS\OneRosterAPI\Components\AcademicSessionModel";
 }

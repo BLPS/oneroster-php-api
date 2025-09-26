@@ -1,8 +1,8 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Endpoints;
+namespace BLPS\OneRosterAPI\Client\Endpoints;
 
 use Exception;
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
 
 class NestedSubEndpoint extends BaseEndpoint

@@ -26,8 +26,8 @@ composer require blps/oneroster-php-api
 ```php
 require 'vendor/autoload.php';
 
-use Kroscom\OneRosterAPI\Client\OneRosterClient;
-use Kroscom\OneRosterAPI\OneRosterAPI;
+use BLPS\OneRosterAPI\Client\OneRosterClient;
+use BLPS\OneRosterAPI\OneRosterAPI;
 
 $clientId = 'your-client-id';
 $clientSecret = 'your-client-secret';

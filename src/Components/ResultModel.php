@@ -1,8 +1,8 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * Results model
@@ -11,8 +11,8 @@ use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
  * @property ?string $scoreDate Score date
  * @property ?float $score Score
  * @property ?string $comment Comment
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $lineItem
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $student
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $lineItem
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $student
  * @property ?string $sourcedId Unique identifier for the instance
  * @property ?string $status Status for the instance
  * @property ?string $dateLastModified Date and time the instance was last
@@ -32,8 +32,8 @@ class ResultModel extends BaseComponent
         "scoreDate" => "string",
         "score" => "float",
         "comment" => "string",
-        "lineItem" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "student" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
+        "lineItem" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "student" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
         "sourcedId" => "string",
         "status" => "string",
         "dateLastModified" => "string",

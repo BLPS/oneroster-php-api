@@ -1,13 +1,13 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
+use BLPS\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
  * Result
  *
- * @property ?\Kroscom\OneRosterAPI\Components\ResultModel[] $results Results
+ * @property ?\BLPS\OneRosterAPI\Components\ResultModel[] $results Results
  *
  * @api
  */
@@ -21,5 +21,5 @@ class ResultsOutputModel extends BaseCollection
     /**
      * @var string
      */
-    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\ResultModel[]";
+    protected static string $collectionModel = "\BLPS\OneRosterAPI\Components\ResultModel[]";
 }

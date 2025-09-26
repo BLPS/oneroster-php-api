@@ -1,12 +1,12 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints\Classes;
+namespace BLPS\OneRosterAPI\Endpoints\Classes;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 use GuzzleHttp\Exception\GuzzleException;
-use Kroscom\OneRosterAPI\Client\Endpoints\SubEndpoint;
-use Kroscom\OneRosterAPI\Components\LineItemsOutputModel;
-use Kroscom\OneRosterAPI\Endpoints\Classes\LineItems\Results;
+use BLPS\OneRosterAPI\Client\Endpoints\SubEndpoint;
+use BLPS\OneRosterAPI\Components\LineItemsOutputModel;
+use BLPS\OneRosterAPI\Endpoints\Classes\LineItems\Results;
 
 /**
  * Routing class for the subnamespace `LineItems`
@@ -29,7 +29,7 @@ class LineItems extends SubEndpoint
      * @var array $endpoints Routing subpaths
      */
     protected array $endpoints = [
-        "results" => "\Kroscom\OneRosterAPI\Endpoints\Classes\LineItems\Results",
+        "results" => "\BLPS\OneRosterAPI\Endpoints\Classes\LineItems\Results",
     ];
 
     /**

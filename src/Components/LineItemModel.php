@@ -1,17 +1,17 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $title
  * @property ?string $description
  * @property ?string $assignDate
  * @property ?string $dueDate
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $class_
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $category
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $gradingPeriod
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $class_
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $category
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $gradingPeriod
  * @property ?float $resultValueMin
  * @property ?float $resultValueMax
  * @property ?string $sourcedId
@@ -31,9 +31,9 @@ class LineItemModel extends BaseComponent
         "description" => "string",
         "assignDate" => "string",
         "dueDate" => "string",
-        "class" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "category" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
-        "gradingPeriod" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
+        "class" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "category" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
+        "gradingPeriod" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
         "resultValueMin" => "float",
         "resultValueMax" => "float",
         "sourcedId" => "string",

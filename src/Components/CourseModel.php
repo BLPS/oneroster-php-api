@@ -1,18 +1,18 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * @property ?string $title
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $schoolYear
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $schoolYear
  * @property ?string $courseCode
  * @property ?string[] $grades
  * @property ?string[] $subjects
- * @property \Kroscom\OneRosterAPI\Components\GuidRefModel $org
+ * @property \BLPS\OneRosterAPI\Components\GuidRefModel $org
  * @property ?string[] $subjectCodes
- * @property ?\Kroscom\OneRosterAPI\Components\GuidRefModel[] $resources
+ * @property ?\BLPS\OneRosterAPI\Components\GuidRefModel[] $resources
  * @property ?string $sourcedId
  * @property ?string $status
  * @property ?string $dateLastModified
@@ -27,13 +27,13 @@ class CourseModel extends BaseComponent
      */
     protected static array $fields = [
         "title" => "string",
-        "schoolYear" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
+        "schoolYear" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
         "courseCode" => "string",
         "grades" => "string[]",
         "subjects" => "string[]",
-        "org" => "\Kroscom\OneRosterAPI\Components\GuidRefModel",
+        "org" => "\BLPS\OneRosterAPI\Components\GuidRefModel",
         "subjectCodes" => "string[]",
-        "resources" => "\Kroscom\OneRosterAPI\Components\GuidRefModel[]",
+        "resources" => "\BLPS\OneRosterAPI\Components\GuidRefModel[]",
         "sourcedId" => "string",
         "status" => "string",
         "dateLastModified" => "string",

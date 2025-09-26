@@ -1,14 +1,14 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Classes;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Courses;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Enrollments;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Students;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Teachers;
-use Kroscom\OneRosterAPI\Endpoints\Schools\Terms;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Endpoints\Schools\Classes;
+use BLPS\OneRosterAPI\Endpoints\Schools\Courses;
+use BLPS\OneRosterAPI\Endpoints\Schools\Enrollments;
+use BLPS\OneRosterAPI\Endpoints\Schools\Students;
+use BLPS\OneRosterAPI\Endpoints\Schools\Teachers;
+use BLPS\OneRosterAPI\Endpoints\Schools\Terms;
 
 /**
  * Routing class for the subnamespace `Schools`
@@ -41,12 +41,12 @@ class Schools extends Endpoint
      * $endpoints Routing subpaths
      */
     protected array $endpoints = [
-        "classes" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Classes",
-        "teachers" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Teachers",
-        "students" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Students",
-        "enrollments" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Enrollments",
-        "terms" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Terms",
-        "courses" => "\Kroscom\OneRosterAPI\Endpoints\Schools\Courses",
+        "classes" => "\BLPS\OneRosterAPI\Endpoints\Schools\Classes",
+        "teachers" => "\BLPS\OneRosterAPI\Endpoints\Schools\Teachers",
+        "students" => "\BLPS\OneRosterAPI\Endpoints\Schools\Students",
+        "enrollments" => "\BLPS\OneRosterAPI\Endpoints\Schools\Enrollments",
+        "terms" => "\BLPS\OneRosterAPI\Endpoints\Schools\Terms",
+        "courses" => "\BLPS\OneRosterAPI\Endpoints\Schools\Courses",
     ];
 
     /**

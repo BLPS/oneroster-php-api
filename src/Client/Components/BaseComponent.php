@@ -1,11 +1,11 @@
 <?php
-namespace Kroscom\OneRosterAPI\Client\Components;
+namespace BLPS\OneRosterAPI\Client\Components;
 
 use Traversable;
 use ArrayIterator;
 use JsonSerializable;
 use IteratorAggregate;
-use Kroscom\OneRosterAPI\Client\Exceptions\ClientException;
+use BLPS\OneRosterAPI\Client\Exceptions\ClientException;
 
 abstract class BaseComponent implements JsonSerializable, IteratorAggregate
 {

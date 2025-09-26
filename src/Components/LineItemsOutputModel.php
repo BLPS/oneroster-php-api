@@ -1,11 +1,11 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
+use BLPS\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
- * @property ?\Kroscom\OneRosterAPI\Components\LineItemModel[] $lineItems
+ * @property ?\BLPS\OneRosterAPI\Components\LineItemModel[] $lineItems
  *
  * @api
  */
@@ -19,5 +19,5 @@ class LineItemsOutputModel extends BaseCollection
     /**
      * @var string
      */
-    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\LineItemModel[]";
+    protected static string $collectionModel = "\BLPS\OneRosterAPI\Components\LineItemModel[]";
 }

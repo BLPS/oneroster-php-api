@@ -1,9 +1,9 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
-use Kroscom\OneRosterAPI\Endpoints\Teachers\Classes;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Endpoints\Teachers\Classes;
 
 /**
  * Routing class for the subnamespace `Teachers`
@@ -28,7 +28,7 @@ class Teachers extends Endpoint
      * @var array $endpoints Routing subpaths
      */
     protected array $endpoints = [
-        "classes" => "\Kroscom\OneRosterAPI\Endpoints\Teachers\Classes",
+        "classes" => "\BLPS\OneRosterAPI\Endpoints\Teachers\Classes",
     ];
 
     /**

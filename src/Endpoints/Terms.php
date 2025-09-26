@@ -1,9 +1,9 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Endpoints;
+namespace BLPS\OneRosterAPI\Endpoints;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\Endpoint;
-use Kroscom\OneRosterAPI\Endpoints\Terms\GradingPeriods;
+use BLPS\OneRosterAPI\Client\Endpoints\Endpoint;
+use BLPS\OneRosterAPI\Endpoints\Terms\GradingPeriods;
 
 /**
  * Routing class for the subnamespace `Terms`
@@ -30,7 +30,7 @@ class Terms extends Endpoint
      *   $endpoints Routing subpaths
      */
     protected array $endpoints = [
-        "gradingPeriods" => "\Kroscom\OneRosterAPI\Endpoints\Terms\GradingPeriods",
+        "gradingPeriods" => "\BLPS\OneRosterAPI\Endpoints\Terms\GradingPeriods",
     ];
 
     /**

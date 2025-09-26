@@ -1,8 +1,8 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Collections\BaseCollection;
+use BLPS\OneRosterAPI\Client\Collections\BaseCollection;
 
 /**
  * @api
@@ -17,5 +17,5 @@ class AcademicSessionsOutputModel extends BaseCollection
     /**
      * @var string
      */
-    protected static string $collectionModel = "\Kroscom\OneRosterAPI\Components\AcademicSessionModel[]";
+    protected static string $collectionModel = "\BLPS\OneRosterAPI\Components\AcademicSessionModel[]";
 }

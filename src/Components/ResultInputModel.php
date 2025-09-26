@@ -1,13 +1,13 @@
 <?php
 
-namespace Kroscom\OneRosterAPI\Components;
+namespace BLPS\OneRosterAPI\Components;
 
-use Kroscom\OneRosterAPI\Client\Components\BaseComponent;
+use BLPS\OneRosterAPI\Client\Components\BaseComponent;
 
 /**
  * Results input model
  *
- * @property \Kroscom\OneRosterAPI\Components\ResultModel $result
+ * @property \BLPS\OneRosterAPI\Components\ResultModel $result
  *   Results model
  *
  * @api
@@ -18,6 +18,6 @@ class ResultInputModel extends BaseComponent
      * @var string[] $fields
      */
     protected static array $fields = [
-        "result" => "\Kroscom\OneRosterAPI\Components\ResultModel",
+        "result" => "\BLPS\OneRosterAPI\Components\ResultModel",
     ];
 }

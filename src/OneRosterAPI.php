@@ -1,23 +1,23 @@
 <?php
 
-namespace Kroscom\OneRosterAPI;
+namespace BLPS\OneRosterAPI;
 
-use Kroscom\OneRosterAPI\Client\Endpoints\BaseEndpoint;
-use Kroscom\OneRosterAPI\Endpoints\AcademicSessions;
-use Kroscom\OneRosterAPI\Endpoints\Categories;
-use Kroscom\OneRosterAPI\Endpoints\Classes;
-use Kroscom\OneRosterAPI\Endpoints\Courses;
-use Kroscom\OneRosterAPI\Endpoints\Demographics;
-use Kroscom\OneRosterAPI\Endpoints\Enrollments;
-use Kroscom\OneRosterAPI\Endpoints\GradingPeriods;
-use Kroscom\OneRosterAPI\Endpoints\LineItems;
-use Kroscom\OneRosterAPI\Endpoints\Orgs;
-use Kroscom\OneRosterAPI\Endpoints\Results;
-use Kroscom\OneRosterAPI\Endpoints\Schools;
-use Kroscom\OneRosterAPI\Endpoints\Students;
-use Kroscom\OneRosterAPI\Endpoints\Teachers;
-use Kroscom\OneRosterAPI\Endpoints\Terms;
-use Kroscom\OneRosterAPI\Endpoints\Users;
+use BLPS\OneRosterAPI\Client\Endpoints\BaseEndpoint;
+use BLPS\OneRosterAPI\Endpoints\AcademicSessions;
+use BLPS\OneRosterAPI\Endpoints\Categories;
+use BLPS\OneRosterAPI\Endpoints\Classes;
+use BLPS\OneRosterAPI\Endpoints\Courses;
+use BLPS\OneRosterAPI\Endpoints\Demographics;
+use BLPS\OneRosterAPI\Endpoints\Enrollments;
+use BLPS\OneRosterAPI\Endpoints\GradingPeriods;
+use BLPS\OneRosterAPI\Endpoints\LineItems;
+use BLPS\OneRosterAPI\Endpoints\Orgs;
+use BLPS\OneRosterAPI\Endpoints\Results;
+use BLPS\OneRosterAPI\Endpoints\Schools;
+use BLPS\OneRosterAPI\Endpoints\Students;
+use BLPS\OneRosterAPI\Endpoints\Teachers;
+use BLPS\OneRosterAPI\Endpoints\Terms;
+use BLPS\OneRosterAPI\Endpoints\Users;
 
 /**
  * Routing class for OneRoster
@@ -51,21 +51,21 @@ class OneRosterAPI extends BaseEndpoint
      * @var array|string[]
      */
     protected array $endpoints = [
-        "academicSessions" => "\Kroscom\OneRosterAPI\Endpoints\AcademicSessions",
-        "terms" => "\Kroscom\OneRosterAPI\Endpoints\Terms",
-        "gradingPeriods" => "\Kroscom\OneRosterAPI\Endpoints\GradingPeriods",
-        "categories" => "\Kroscom\OneRosterAPI\Endpoints\Categories",
-        "classes" => "\Kroscom\OneRosterAPI\Endpoints\Classes",
-        "courses" => "\Kroscom\OneRosterAPI\Endpoints\Courses",
-        "enrollments" => "\Kroscom\OneRosterAPI\Endpoints\Enrollments",
-        "lineItems" => "\Kroscom\OneRosterAPI\Endpoints\LineItems",
-        "orgs" => "\Kroscom\OneRosterAPI\Endpoints\Orgs",
-        "results" => "\Kroscom\OneRosterAPI\Endpoints\Results",
-        "schools" => "\Kroscom\OneRosterAPI\Endpoints\Schools",
-        "users" => "\Kroscom\OneRosterAPI\Endpoints\Users",
-        "teachers" => "\Kroscom\OneRosterAPI\Endpoints\Teachers",
-        "students" => "\Kroscom\OneRosterAPI\Endpoints\Students",
-        "demographics" => "\Kroscom\OneRosterAPI\Endpoints\Demographics",
+        "academicSessions" => "\BLPS\OneRosterAPI\Endpoints\AcademicSessions",
+        "terms" => "\BLPS\OneRosterAPI\Endpoints\Terms",
+        "gradingPeriods" => "\BLPS\OneRosterAPI\Endpoints\GradingPeriods",
+        "categories" => "\BLPS\OneRosterAPI\Endpoints\Categories",
+        "classes" => "\BLPS\OneRosterAPI\Endpoints\Classes",
+        "courses" => "\BLPS\OneRosterAPI\Endpoints\Courses",
+        "enrollments" => "\BLPS\OneRosterAPI\Endpoints\Enrollments",
+        "lineItems" => "\BLPS\OneRosterAPI\Endpoints\LineItems",
+        "orgs" => "\BLPS\OneRosterAPI\Endpoints\Orgs",
+        "results" => "\BLPS\OneRosterAPI\Endpoints\Results",
+        "schools" => "\BLPS\OneRosterAPI\Endpoints\Schools",
+        "users" => "\BLPS\OneRosterAPI\Endpoints\Users",
+        "teachers" => "\BLPS\OneRosterAPI\Endpoints\Teachers",
+        "students" => "\BLPS\OneRosterAPI\Endpoints\Students",
+        "demographics" => "\BLPS\OneRosterAPI\Endpoints\Demographics",
     ];
 
     /**
