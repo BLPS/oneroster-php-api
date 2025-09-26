@@ -16,7 +16,7 @@ OneRoster PHP API is a significantly modified version of [Sky API OneRoster](htt
 To install the package, use Composer:
 
 ```sh
-composer require pavlokrostylovblps/oneroster-php-api
+composer require blps/oneroster-php-api
 ```
 
 ## Usage
