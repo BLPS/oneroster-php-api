@@ -1,5 +1,5 @@
 {
-  "name": "pavlokrostylovblps/oneroster-php-api",
+  "name": "blps/oneroster-php-api",
   "description": "OneRoster REST API PHP client",
   "license": "GPL-3.0",
   "autoload": {
